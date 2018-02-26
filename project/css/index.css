@@ -1,0 +1,29 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+.container {
+	background-color: black;
+	height: 100px;
+}
+
+.testbar {
+	width: 100%
+}
+
+.progbar {
+	border:1px solid grey;
+	height:30px;
+}
+
+#bar1 {
+	height:30px;
+	background-color: blue;
+	width: 0%;
+}
+
+#bar2 {
+	height:30px;
+	background-color: red;
+	width: 0%;
+}
