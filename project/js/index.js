@@ -4,14 +4,18 @@
 //Take keyboard inputs and progress the bars
 var num1 = 0
 var num2 = 0
+var count1 = 0
+var count2 = 0
 
 window.addEventListener('keydown', function(event){
-	console.log($('#bar1').css('width'))
-	if($('#bar1').width() == '100%' || $('#bar2').width() == '100%') {
-		alert('Game Over!')
+	if(count1 == 50) {
+		alert('Game Over! Player1 wins!')
+	} else if (count2  == 50) {
+		alert('Game Over! Player2 wins!')
 	} else {
 		switch (event.key){
 		case 'w':
+		++count1
 		num1 += 2
 		var width1 = num1 + '%'
 		$('#bar1').width(width1)
