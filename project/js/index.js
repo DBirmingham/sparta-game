@@ -1,30 +1,53 @@
-//119 W
-//111 O
+$(function(){
+	var num1 = 1
+	var num2 = 1
+	var count1 = 0
+	var count2 = 0
+	var counter1 = 0
+	var counter2 = 0
 
-//Take keyboard inputs and progress the bars
-var num1 = 0
-var num2 = 0
-var count1 = 0
-var count2 = 0
-
-window.addEventListener('keydown', function(event){
-	if(count1 == 50) {
-		alert('Game Over! Player1 wins!')
-	} else if (count2  == 50) {
-		alert('Game Over! Player2 wins!')
-	} else {
+	window.addEventListener('keyup', function(event){
 		switch (event.key){
 		case 'w':
-		++count1
-		num1 += 2
-		var width1 = num1 + '%'
-		$('#bar1').width(width1)
+		num1 += 1;
+		++counter1;
+		$('#Character1').css('left', num1 + '%');
 		break;
 		case 'o':
-		num2 += 2
-		var width2 = num2 + '%'
-		$('#bar2').width(width2)
+		num2 += 1;
+		++counter2;
+		$('#Character2').css('right', num2 + '%');
 		break;
 		};
+		if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
+			if (counter1 > counter2 + 1) {
+				alert('Player1 wins Decisively!')
+			} else if (counter2 > counter1 + 1) {
+				alert('Player2 wins Decisively')
+			} else if (counter1 == counter2) {
+				if (num1 > num2) {
+					alert('Player1 wins!')
+				} else if (num2 > num1) {
+					alert('Player2 wins!')
+				} else {
+					alert('A stunning draw!!')
+				}
+			}
+		}
+	});
+
+	function speed (){
+		setInterval(counts, 500)
 	}
+
+	function counts (){
+		console.log(counter1)
+		console.log(counter2)
+		if (counter1 !== 0 || counter2 !== 0){
+			counter1 = 0
+			counter2 = 0	
+		}
+	}
+
+	speed();
 });

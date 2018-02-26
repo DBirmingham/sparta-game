@@ -1,29 +1,37 @@
 *{
-	margin:0px;
-	padding:0px;
+	margin: 0;
+	padding: 0;
 }
+
+button{
+	position:absolute;
+	left: 50%;
+}
+
 .container {
+	width: 100%;
 	background-color: black;
-	height: 100px;
+	height:100px;
 }
 
-.testbar {
-	width: 100%
+.arena {
+	display: inline;
 }
 
-.progbar {
-	border:1px solid grey;
+#Character1 {
+	background-color: yellow;
 	height:30px;
+	width: 30px;
+	position: absolute;
+	left: 1%;
+	top: 70px;
 }
 
-#bar1 {
-	height:30px;
-	background-color: blue;
-	width: 0%;
-}
-
-#bar2 {
-	height:30px;
+#Character2 {
 	background-color: red;
-	width: 0%;
+	height:30px;
+	width: 30px;
+	position: absolute;
+	right: 1%;
+	top: 70px;
 }
