@@ -21,6 +21,7 @@ window.addEventListener('keydown', function(event){
 		$('#bar1').width(width1)
 		break;
 		case 'o':
+		++count2
 		num2 += 2
 		var width2 = num2 + '%'
 		$('#bar2').width(width2)
