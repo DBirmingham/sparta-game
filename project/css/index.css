@@ -10,7 +10,7 @@ button{
 
 .container {
 	width: 100%;
-	background-color: black;
+	background-color: white;
 	height:100px;
 }
 
@@ -19,19 +19,23 @@ button{
 }
 
 #Character1 {
-	background-color: yellow;
-	height:30px;
-	width: 30px;
 	position: absolute;
 	left: 1%;
 	top: 70px;
 }
 
-#Character2 {
-	background-color: red;
+#sprite1 {
 	height:30px;
-	width: 30px;
+	width:30px;
+}
+
+#Character2 {
 	position: absolute;
 	right: 1%;
 	top: 70px;
+}
+
+#sprite2 {
+	height:30px;
+	width:30px;
 }

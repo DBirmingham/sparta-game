@@ -5,18 +5,21 @@ $(function(){
 	var count2 = 0
 	var counter1 = 0
 	var counter2 = 0
+	var sprite = 1
 
 	window.addEventListener('keyup', function(event){
 		switch (event.key){
 		case 'w':
 		num1 += 1;
 		++counter1;
+		spriteChange();
 		$('#Character1').css('left', num1 + '%');
 		break;
 		case 'o':
 		num2 += 1;
 		++counter2;
 		$('#Character2').css('right', num2 + '%');
+		spriteChange2();
 		break;
 		};
 		if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
@@ -42,12 +45,28 @@ $(function(){
 
 	function counts (){
 		console.log(counter1)
-		console.log(counter2)
 		if (counter1 !== 0 || counter2 !== 0){
 			counter1 = 0
 			counter2 = 0	
 		}
 	}
 
+	function spriteChange(){
+		++sprite
+		console.log(sprite)
+		$('#sprite1').attr('src','img/Charanims/Run'+sprite+'.png' )
+		if (sprite > 5){
+			sprite = 1
+		}
+	}
+
+	function spriteChange2(){
+		++sprite
+		console.log(sprite)
+		$('#sprite2').attr('src','img/Charanims/Run2'+sprite+'.png' )
+		if (sprite > 5){
+			sprite = 1
+		}
+	}
 	speed();
 });
