@@ -1,37 +1,12 @@
-<<<<<<< HEAD
-//119 W
-//111 O
-
-//Take keyboard inputs and progress the bars
-var num1 = 0
-var num2 = 0
-var count1 = 0
-var count2 = 0
-
-window.addEventListener('keydown', function(event){
-	if(count1 == 50) {
-		alert('Game Over! Player1 wins!')
-	} else if (count2  == 50) {
-		alert('Game Over! Player2 wins!')
-	} else {
-		switch (event.key){
-		case 'w':
-		++count1
-		num1 += 2
-		var width1 = num1 + '%'
-		$('#bar1').width(width1)
-		break;
-		case 'o':
-		++count2
-		num2 += 2
-		var width2 = num2 + '%'
-		$('#bar2').width(width2)
-		break;
-		};
-=======
 $(function(){
 	init();
+	var num1 = 1
+	var num2 = 1
+	var counter1 = 0
+	var counter2 = 0
+
 	function init(){
+		$('.menu').css({'visibility': 'visible'})
 		$('#play').click(function(){
 			$('.menu').css({'display': 'none'})
 			gameStart();
@@ -43,16 +18,9 @@ $(function(){
 	}
 
 	function gameStart(){
-		var num1 = 1
-		var num2 = 1
-		var count1 = 0
-		var count2 = 0
-		var counter1 = 0
-		var counter2 = 0
 		var sprite = 1
 		var end = false
-
-		window.addEventListener('keyup', function(event){
+		$(window).on('keyup', function(event){
 			switch (event.key){
 			case 'w':
 			num1 += 1;
@@ -68,24 +36,8 @@ $(function(){
 			break;
 			};
 			if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
-				end = true;
-				if (counter1 > counter2 + 1) {
-					alert('Player1 wins Decisively!')
-					$('#sprite2').attr('src','img/charSword/Death21.png')
-				} else if (counter2 > counter1 + 1) {
-					alert('Player2 wins Decisively')
-					$('#sprite1').attr('src','img/charSword/Death1.png')
-				} else if (counter1 == counter2) {
-					if (num1 > num2) {
-						alert('Player1 wins!')
-						$('#sprite2').attr('src','img/charSword/Death21.png')
-					} else if (num2 > num1) {
-						alert('Player2 wins!')
-						$('#sprite1').attr('src','img/charSword/Death1.png')
-					} else {
-						alert('A stunning draw!!')
-					}
-				}
+				$(window).off('keyup')
+				gameEnd();
 			}
 		});
 
@@ -140,6 +92,30 @@ $(function(){
 
 		speed();
 		still();
->>>>>>> character
+	}
+
+	function gameEnd(){
+		$('.container').animate({opacity:0}, 3000, function(){
+			$('.container').html("<img src='img/Ending/endscreenDemo.png'>")
+			$('.container').animate({opacity:1}, 3000, function(){
+				if (counter1 > counter2 + 1) {
+					alert('Player1 wins Decisively!')
+					$('#sprite2').attr('src','img/charSword/Death21.png')
+				} else if (counter2 > counter1 + 1) {
+					alert('Player2 wins Decisively')
+					$('#sprite1').attr('src','img/charSword/Death1.png')
+				} else if (counter1 == counter2) {
+					if (num1 > num2) {
+						alert('Player1 wins!')
+						$('#sprite2').attr('src','img/charSword/Death21.png')
+					} else if (num2 > num1) {
+						alert('Player2 wins!')
+						$('#sprite1').attr('src','img/charSword/Death1.png')
+					} else {
+						alert('A stunning draw!!')
+					}
+				}
+			})
+		});
 	}
 });

@@ -8,12 +8,15 @@ button{
 	left: 50%;
 }
 
+body{
+	background-color: #000;
+}
+
 .container {
-	width: 50%;
+	width: 100%;
 	background-color: skyblue;
 	height:250px;
 	position: relative;
-	left: 25%;
 	overflow: hidden;
 	margin-top: 20%;
 }
@@ -21,13 +24,14 @@ button{
 .menu {
 	margin: auto;
 	margin-top: 40px;
-	width: 60%;
-	background-color: orange;
+	font-family: 'Press Start 2P', cursive;
+	width: 50%;
 	text-align: center;
+	padding: 15px;
 }
 
 .menu p {
-	font-size: 12px;
+	font-size: 8px;
 }
 
 .menuList {
