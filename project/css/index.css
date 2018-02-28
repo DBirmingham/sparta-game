@@ -1,29 +1,67 @@
 *{
-	margin:0px;
-	padding:0px;
+	margin: 0;
+	padding: 0;
 }
+
+button{
+	position:absolute;
+	left: 50%;
+}
+
 .container {
-	background-color: black;
-	height: 100px;
+	width: 50%;
+	background-color: skyblue;
+	height:250px;
+	position: relative;
+	left: 25%;
+	overflow: hidden;
+	margin-top: 20%;
 }
 
-.testbar {
-	width: 100%
+.menu {
+	margin: auto;
+	margin-top: 40px;
+	width: 60%;
+	background-color: orange;
+	text-align: center;
 }
 
-.progbar {
-	border:1px solid grey;
+.menu p {
+	font-size: 12px;
+}
+
+.menuList {
+	list-style-type: none;
+}
+
+.ground {
+	position:absolute;
+	bottom:0;
+	overflow: hidden;
+}
+
+.arena {
+	display: inline;
+}
+
+#Character1 {
+	position: absolute;
+	left: 1%;
+	top: 204px;
+}
+
+#sprite1 {
 	height:30px;
+	width:30px;
 }
 
-#bar1 {
-	height:30px;
-	background-color: blue;
-	width: 0%;
+#Character2 {
+	position: absolute;
+	right: 1%;
+	top: 204px;
 }
 
-#bar2 {
+#sprite2 {
 	height:30px;
-	background-color: red;
-	width: 0%;
+	width:30px;
 }
