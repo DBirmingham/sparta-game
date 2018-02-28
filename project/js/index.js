@@ -1,11 +1,12 @@
 $(function(){
 	init();
-	var num1 = 1
-	var num2 = 1
 	var counter1 = 0
 	var counter2 = 0
+	var num1 = 1
+	var num2 = 1
 
 	function init(){
+		$('.menu').html("<h1>Joust!!</h1><ul class='menuList'><li id='play'>Play</li><li id='instructions'>Instructions</li></ul>")
 		$('.menu').css({'visibility': 'visible'})
 		$('#play').click(function(){
 			$('.menu').css({'visibility': 'hidden'})
@@ -35,6 +36,7 @@ $(function(){
 		var standStill = setInterval(stay, 200)
 		var pedometer = setInterval(counts, 500)
 		var sprite = 1
+
 		$(window).on('keyup', function(event){
 			switch (event.key){
 			case 'w':
@@ -56,30 +58,35 @@ $(function(){
 				clearInterval(standStill)
 				clearInterval(pedometer)
 				if (counter1 > counter2 + 1) {
-					p1Win.sprite1
-					p1Win.sprite2
-					$('.menu').html('<h1>Player1 wins Decisively!!</h1><p>To the winner go the spoils</p><p>Play Again?</p><p>Main Menu</p>')
+					$('#sprite2').attr('src','img/Ending/Defeat21.png')
+					$('#sprite1').attr('src','img/Ending/Victory1.png')
+					$('.menu').html('<h1>Player1 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 					$('.menu').css({'visibility': 'visible'})
+					gameEnd();
 				} else if (counter2 > counter1 + 1) {
-					p2Win.sprite1
-					p2Win.sprite2
-					$('.menu').html('<h1>Player2 wins Decisively!!</h1><p>To the winner go the spoils</p><p>Play Again?</p><p>Main Menu</p>')
+					$('#sprite2').attr('src','img/Ending/Victory21.png')
+					$('#sprite1').attr('src','img/Ending/Defeat1.png')
+					$('.menu').html('<h1>Player2 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 					$('.menu').css({'visibility': 'visible'})
+					gameEnd();
 				} else if (counter1 == counter2 || counter1 == counter2 + 1 || counter2 == counter1 + 1) {
 					if (num1 > num2) {
-						p1Win.sprite1
-						p1Win.sprite2
-						$('.menu').html('<h1>Player1 wins!</h1><p></p><p>Play Again?</p><p>Main Menu</p>')
+						$('#sprite2').attr('src','img/Ending/Defeat21.png')
+						$('#sprite1').attr('src','img/Ending/Victory1.png')
+						$('.menu').html('<h1>Player1 wins!</h1><p></p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 						$('.menu').css({'visibility': 'visible'})
+						gameEnd();
 					} else if (num2 > num1) {						
-						p2Win.sprite1
-						p2Win.sprite2
-						$('.menu').html('<h1>Player2 wins!</h1><p>To the winner go the spoils</p><p>Play Again?</p><p>Main Menu</p>')
+						$('#sprite2').attr('src','img/Ending/Victory21.png')
+						$('#sprite1').attr('src','img/Ending/Defeat1.png')
+						$('.menu').html('<h1>Player2 wins!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 						$('.menu').css({'visibility': 'visible'})
+						gameEnd();
 					} else {
 						alert('A stunning draw!!');
-						$('.menu').html('<h1>NO CONTEST</h1><p>Play Again?</p><p>Main Menu</p>')
+						$('.menu').html('<h1>NO CONTEST</h1><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 						$('.menu').css({'visibility': 'visible'})
+						gameEnd();
 					}
 				}
 				// gameEnd();
@@ -128,25 +135,25 @@ $(function(){
 			}
 		}
 
-		var p1win = {
-			sprite2: $('#sprite2').attr('src','img/Ending/Defeat21.png'),
-			sprite1: $('#sprite1').attr('src','img/Ending/Victory1.png')
-		}
-
-		var p2win = {
-			sprite2: $('#sprite2').attr('src','img/Ending/Victory21.png'),
-			sprite1: $('#sprite1').attr('src','img/Ending/Defeat1.png')
-		}
-
 		speed();
 		still();
 	}
 
-	// function gameEnd(num){
-	// 	$('.container').animate({opacity:0}, 3000, function(){
-	// 		$('.container').animate({opacity:1}, 3000, function(){
-				
-	// 		})
-	// 	});
-	// }
+	function gameEnd(){
+		$('#replay').click(function(){
+			num1 = 1
+			num2 = 1
+			$('#Character1').css('left', num1 + '%')
+			$('#Character2').css('right', num2 + '%')
+			gameStart();
+			$('.menu').css({'visibility': 'hidden'})
+		})
+		$('#restart').click(function(){
+			num1 = 1
+			num2 = 1
+			$('#Character1').css('left', num1 + '%')
+			$('#Character2').css('right', num2 + '%')
+			init();
+		})
+	}
 });
