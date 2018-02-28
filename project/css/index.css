@@ -1,0 +1,71 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+button{
+	position:absolute;
+	left: 50%;
+}
+
+body{
+	background-color: #000;
+}
+
+.container {
+	width: 100%;
+	background-color: skyblue;
+	height:250px;
+	position: relative;
+	overflow: hidden;
+	margin-top: 20%;
+}
+
+.menu {
+	margin: auto;
+	margin-top: 40px;
+	font-family: 'Press Start 2P', cursive;
+	width: 50%;
+	text-align: center;
+	padding: 15px;
+}
+
+.menu p {
+	font-size: 8px;
+}
+
+.menuList {
+	list-style-type: none;
+}
+
+.ground {
+	position:absolute;
+	bottom:0;
+	overflow: hidden;
+}
+
+.arena {
+	display: inline;
+}
+
+#Character1 {
+	position: absolute;
+	left: 1%;
+	top: 204px;
+}
+
+#sprite1 {
+	height:30px;
+	width:30px;
+}
+
+#Character2 {
+	position: absolute;
+	right: 1%;
+	top: 204px;
+}
+
+#sprite2 {
+	height:30px;
+	width:30px;
+}
