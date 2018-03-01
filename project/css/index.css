@@ -12,6 +12,10 @@ body{
 	background-color: #000;
 }
 
+li:hover {
+	color:white;
+}
+
 .container {
 	width: 100%;
 	background-color: skyblue;
@@ -21,6 +25,11 @@ body{
 	margin-top: 10%;
 }
 
+.clouds {
+	position:absolute;
+	z-index: 0;
+}
+
 .menu {
 	margin: auto;
 	margin-top: 40px;
@@ -28,6 +37,7 @@ body{
 	width: 50%;
 	text-align: center;
 	padding: 15px;
+	z-index: 0;
 }
 
 .menu p {
@@ -48,6 +58,10 @@ body{
 
 .arena {
 	display: inline;
+}
+
+#X:hover, #replay:hover, #restart:hover {
+	color:white;
 }
 
 #Character1 {
@@ -71,3 +85,4 @@ body{
 	height:50px;
 	width:50px;
 }
+

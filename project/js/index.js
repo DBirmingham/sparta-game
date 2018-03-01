@@ -4,8 +4,12 @@ $(function(){
 	var counter2 = 0
 	var num1 = 1
 	var num2 = 1
+	var main = document.getElementById('main')
+	var victory = document.getElementById('victory')
 
 	function init(){
+		$.stopSound();
+		$.playSound('aud/MainTheme.mp3')
 		$('.menu').html("<h1>Joust!!</h1><ul class='menuList'><li id='play'>Play</li><li id='instructions'>Instructions</li></ul>")
 		$('.menu').css({'visibility': 'visible'})
 		$('#play').click(function(){
@@ -55,40 +59,45 @@ $(function(){
 			};
 			if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
 				$(window).off('keyup')
+				$.stopSound();
+				$.playSound('aud/collide.mp3')
 				clearInterval(standStill)
 				clearInterval(pedometer)
-				if (counter1 > counter2 + 1) {
-					$('#sprite2').attr('src','img/Ending/Defeat21.png')
-					$('#sprite1').attr('src','img/Ending/Victory1.png')
-					$('.menu').html('<h1>Player1 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
-					$('.menu').css({'visibility': 'visible'})
-					gameEnd();
-				} else if (counter2 > counter1 + 1) {
-					$('#sprite2').attr('src','img/Ending/Victory21.png')
-					$('#sprite1').attr('src','img/Ending/Defeat1.png')
-					$('.menu').html('<h1>Player2 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
-					$('.menu').css({'visibility': 'visible'})
-					gameEnd();
-				} else if (counter1 == counter2 || counter1 == counter2 + 1 || counter2 == counter1 + 1) {
-					if (num1 > num2) {
+				setTimeout(function(){
+					if (counter1 > counter2 + 1) {
 						$('#sprite2').attr('src','img/Ending/Defeat21.png')
 						$('#sprite1').attr('src','img/Ending/Victory1.png')
-						$('.menu').html('<h1>Player1 wins!</h1><p></p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
+						$('.menu').html('<h1>Player1 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 						$('.menu').css({'visibility': 'visible'})
 						gameEnd();
-					} else if (num2 > num1) {						
+					} else if (counter2 > counter1 + 1) {
 						$('#sprite2').attr('src','img/Ending/Victory21.png')
 						$('#sprite1').attr('src','img/Ending/Defeat1.png')
-						$('.menu').html('<h1>Player2 wins!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
+						$('.menu').html('<h1>Player2 wins Decisively!!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 						$('.menu').css({'visibility': 'visible'})
 						gameEnd();
-					} else {
-						alert('A stunning draw!!');
-						$('.menu').html('<h1>NO CONTEST</h1><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
-						$('.menu').css({'visibility': 'visible'})
-						gameEnd();
-					}
-				}
+					} else if (counter1 == counter2 || counter1 == counter2 + 1 || counter2 == counter1 + 1) {
+						if (num1 > num2) {
+							$('#sprite2').attr('src','img/Ending/Defeat21.png')
+							$('#sprite1').attr('src','img/Ending/Victory1.png')
+							$('.menu').html('<h1>Player1 wins!</h1><p></p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
+							$('.menu').css({'visibility': 'visible'})
+							gameEnd();
+						} else if (num2 > num1) {						
+							$('#sprite2').attr('src','img/Ending/Victory21.png')
+							$('#sprite1').attr('src','img/Ending/Defeat1.png')
+							$('.menu').html('<h1>Player2 wins!</h1><p>To the winner go the spoils</p><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
+							$('.menu').css({'visibility': 'visible'})
+							gameEnd();
+						} else {
+							alert('A stunning draw!!');
+							$('.menu').html('<h1>NO CONTEST</h1><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
+							$('.menu').css({'visibility': 'visible'})
+							gameEnd();
+						}
+					}	
+				}, 1000)
+				
 				// gameEnd();
 			}
 		});
@@ -140,12 +149,16 @@ $(function(){
 	}
 
 	function gameEnd(){
+		$.stopSound();
+		$.playSound('aud/Victory.mp3');
 		$('#replay').click(function(){
 			num1 = 1
 			num2 = 1
 			$('#Character1').css('left', num1 + '%')
 			$('#Character2').css('right', num2 + '%')
 			gameStart();
+			$.stopSound();
+			$.playSound('aud/MainTheme.mp3')
 			$('.menu').css({'visibility': 'hidden'})
 		})
 		$('#restart').click(function(){
