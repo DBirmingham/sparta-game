@@ -1,5 +1,7 @@
 $(function(){
 	init();
+	cloudy();
+	console.log($('.clouds').width())
 	var counter1 = 0
 	var counter2 = 0
 	var num1 = 1
@@ -7,19 +9,45 @@ $(function(){
 	var main = document.getElementById('main')
 	var victory = document.getElementById('victory')
 
+	function cloudy(){
+		setInterval(cloud, 2000)
+	}
+
+	function cloud(){
+		var offset = $(window).width() + 512
+		$('.clouds').animate({left: offset}, 10000, function(){
+			$('.clouds').css({'position':'absolute','left': '-256px'})
+		})
+	}
+
+	function countdown(){
+		$('.menu').html("<h1 class='countdown'>3</h1>")
+		setTimeout(function(){
+			$('.menu').html("<h1 class='countdown'>2</h1>")
+		},1000)
+		setTimeout(function(){
+			$('.menu').html("<h1 class='countdown'>1</h1>")
+		},2000)
+		setTimeout(function(){
+			$('.menu').html("<h1 class='GO'>GO!</h1>")
+			$('#GO')
+			gameStart();
+		},3000)
+		setTimeout(function(){
+			$('.menu').css({'visibility': 'hidden'})
+		},3500)
+	}
+
 	function init(){
 		$.stopSound();
 		$.playSound('aud/MainTheme.mp3')
 		$('.menu').html("<h1>Joust!!</h1><ul class='menuList'><li id='play'>Play</li><li id='instructions'>Instructions</li></ul>")
 		$('.menu').css({'visibility': 'visible'})
-		$('#play').click(function(){
-			$('.menu').css({'visibility': 'hidden'})
-			gameStart();
-		})
+		$('#play').click(countdown)
 
 		$('#instructions').click(function(){
 			var oldHTML = $('.menu').html()
-			$('.menu').html('<p id="X" style="text-align: left">X</p><p>Player 1: w</p><p>Player 2: o</p><p>Mash the keys to outdo your opponent. Victory is given to the one who\'s covered the most distance unless one player is decisively faster than the other at the time of collision, so watch out for comebacks!</p>');
+			$('.menu').html('<p id="X" style="text-align: left">X</p><p>Player 1: w</p><p>Player 2: o</p><p>Mash the keys to outdo your opponent. Fastest finger is the winner but watch out for comebacks!</p>');
 			$('#X').on('click', function(){
 				$('.menu').html(oldHTML);
 				init();
@@ -41,7 +69,7 @@ $(function(){
 		var pedometer = setInterval(counts, 500)
 		var sprite = 1
 
-		$(window).on('keyup', function(event){
+		$(window).on('keydown', function(event){
 			switch (event.key){
 			case 'w':
 			num1 += 1;
@@ -54,11 +82,10 @@ $(function(){
 			++counter2;
 			spriteChange2();
 			$('#Character2').css('right', num2 + '%');
-			// console.log($(window).width()/100)
 			break;
 			};
 			if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
-				$(window).off('keyup')
+				$(window).off('keydown')
 				$.stopSound();
 				$.playSound('aud/collide.mp3')
 				clearInterval(standStill)
@@ -111,8 +138,6 @@ $(function(){
 		}
 
 		function counts (){
-			console.log(counter1)
-			console.log(counter2)
 			if (counter1 !== 0 || counter2 !== 0){
 				counter1 = 0
 				counter2 = 0	
@@ -156,10 +181,9 @@ $(function(){
 			num2 = 1
 			$('#Character1').css('left', num1 + '%')
 			$('#Character2').css('right', num2 + '%')
-			gameStart();
 			$.stopSound();
 			$.playSound('aud/MainTheme.mp3')
-			$('.menu').css({'visibility': 'hidden'})
+			countdown();
 		})
 		$('#restart').click(function(){
 			num1 = 1

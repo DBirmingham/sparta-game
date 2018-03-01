@@ -27,17 +27,20 @@ li:hover {
 
 .clouds {
 	position:absolute;
-	z-index: 0;
+	top: 5%;
+	left: -256px;
+	z-index: 1;
 }
 
 .menu {
+	position: relative;
 	margin: auto;
 	margin-top: 40px;
 	font-family: 'Press Start 2P', cursive;
 	width: 50%;
 	text-align: center;
 	padding: 15px;
-	z-index: 0;
+	z-index: 2;
 }
 
 .menu p {
@@ -49,6 +52,24 @@ li:hover {
 	list-style-type: none;
 }
 
+.countdown, .GO{
+	color: red;
+	text-shadow: -2px 2px #000;
+}
+
+
+@-webkit-keyframes rumble {
+    0% {-webkit-transform: rotate(0deg);}
+    25% {-webkit-transform: translate(2px, 0px) rotate(-3deg);}
+    50% {-webkit-transform: translate(0px, -2px) rotate(0deg);}
+    75% {-webkit-transform: translate(-2px, 0px) rotate(3deg);}
+    100% {-webkit-transform: translate(0px, 2px) rotate(0deg);} 
+}
+
+.GO {
+	 -webkit-animation: rumble .0625s infinite linear;
+}
+
 .ground {
 	position:absolute;
 	bottom:0;
@@ -58,6 +79,11 @@ li:hover {
 
 .arena {
 	display: inline;
+}
+
+#X {
+	display: inline;
+	float: left;
 }
 
 #X:hover, #replay:hover, #restart:hover {
