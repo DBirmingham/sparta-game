@@ -1,13 +1,14 @@
 $(function(){
 	init();
 	cloudy();
-	console.log($('.clouds').width())
 	var counter1 = 0
 	var counter2 = 0
 	var num1 = 1
 	var num2 = 1
-	var main = document.getElementById('main')
+	var main = document.createElement('main')
 	var victory = document.getElementById('victory')
+	var muted = false
+	
 
 	function cloudy(){
 		setInterval(cloud, 2000)
@@ -44,10 +45,9 @@ $(function(){
 		$('.menu').html("<h1>Joust!!</h1><ul class='menuList'><li id='play'>Play</li><li id='instructions'>Instructions</li></ul>")
 		$('.menu').css({'visibility': 'visible'})
 		$('#play').click(countdown)
-
 		$('#instructions').click(function(){
 			var oldHTML = $('.menu').html()
-			$('.menu').html('<p id="X" style="text-align: left">X</p><p>Player 1: w</p><p>Player 2: o</p><p>Mash the keys to outdo your opponent. Fastest finger is the winner but watch out for comebacks!</p>');
+			$('.menu').html('<p id="X" style="text-align: left">X</p><p>Player 1 - charge : w , pride : c</p><p>Player 2 - charge : o , pride : m</p><p>Mash the keys to outdo your opponent. Fastest finger is the winner but watch out for comebacks!</p>');
 			$('#X').on('click', function(){
 				$('.menu').html(oldHTML);
 				init();
@@ -76,12 +76,14 @@ $(function(){
 			++counter1;
 			spriteChange();
 			$('#Character1').css('left', num1 + '%');
+			$('#taunt1').css('left', num1 + '%')
 			break;
 			case 'o':
 			num2 += 1;
 			++counter2;
 			spriteChange2();
 			$('#Character2').css('right', num2 + '%');
+			$('#taunt2').css('right', num2 + '%')
 			break;
 			};
 			if ($('#Character2').position().left <  ($('#Character1').position().left + $('#Character1').width())) {
@@ -120,12 +122,10 @@ $(function(){
 							alert('A stunning draw!!');
 							$('.menu').html('<h1>NO CONTEST</h1><p id="replay">Play Again?</p><p id="restart">Main Menu</p>')
 							$('.menu').css({'visibility': 'visible'})
-							gameEnd();
+							gameEnd2();
 						}
 					}	
 				}, 1000)
-				
-				// gameEnd();
 			}
 		});
 
@@ -147,9 +147,29 @@ $(function(){
 		function stay (){
 			if (counter1 == 0){
 				$('#sprite1').attr('src','img/charSword/Idle1.png')
+				$(window).on('keyup',function(){
+					switch (event.key){
+						case 'c':
+							$('#taunt1').css({'visibility':'visible'})
+							setTimeout(function(){
+								$('#taunt1').css({'visibility':'hidden'})
+							}, 500)
+						break;
+					}
+				})
 			}
 			if (counter2 == 0){
 				$('#sprite2').attr('src','img/charSword/Idle21.png')
+				$(window).on('keyup',function(){
+					switch (event.key){
+						case 'm':
+							$('#taunt2').css({'visibility':'visible'})
+							setTimeout(function(){
+								$('#taunt2').css({'visibility':'hidden'})
+							}, 500)
+						break;
+					}
+				})
 			} 
 		}
 
@@ -173,9 +193,7 @@ $(function(){
 		still();
 	}
 
-	function gameEnd(){
-		$.stopSound();
-		$.playSound('aud/Victory.mp3');
+	function replay(){
 		$('#replay').click(function(){
 			num1 = 1
 			num2 = 1
@@ -185,6 +203,9 @@ $(function(){
 			$.playSound('aud/MainTheme.mp3')
 			countdown();
 		})
+	}
+
+	function restart(){
 		$('#restart').click(function(){
 			num1 = 1
 			num2 = 1
@@ -192,5 +213,19 @@ $(function(){
 			$('#Character2').css('right', num2 + '%')
 			init();
 		})
+	}
+
+	function gameEnd(){
+		$.stopSound();
+		$.playSound('aud/Victory.mp3');
+		replay();
+		restart();
+	}
+
+	function gameEnd2(){
+		$.stopSound();
+		$.playSound('aud/NoContest.mp3');
+		replay();
+		restart();
 	}
 });
