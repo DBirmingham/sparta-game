@@ -10,7 +10,7 @@ Furthermore it provided an introduction to basic Agile workflow, being done in t
 
 In doing this project I aimed to cement my technical skills whilst developing my creativity to create a fun and functional product.
 
-##Gameplay
+## Gameplay
 
 At heart the game is a button mashing game with the aim of reaching your opponent at speed.
 
