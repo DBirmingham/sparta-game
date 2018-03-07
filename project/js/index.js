@@ -23,15 +23,18 @@ $(function(){
 
 	function countdown(){
 		$('.menu').html("<h1 class='countdown'>3</h1>")
+		$.playSound('aud/3.wav')
 		setTimeout(function(){
 			$('.menu').html("<h1 class='countdown'>2</h1>")
+			$.playSound('aud/2.wav')
 		},1000)
 		setTimeout(function(){
 			$('.menu').html("<h1 class='countdown'>1</h1>")
+			$.playSound('aud/1.wav')
 		},2000)
 		setTimeout(function(){
 			$('.menu').html("<h1 class='GO'>GO!</h1>")
-			$('#GO')
+			$.playSound('aud/Go.wav')
 			gameStart();
 		},3000)
 		setTimeout(function(){
@@ -141,6 +144,7 @@ $(function(){
 			if (counter1 !== 0 || counter2 !== 0){
 				counter1 = 0
 				counter2 = 0	
+				$(window).off('keyup')
 			}
 		}
 
@@ -199,6 +203,8 @@ $(function(){
 			num2 = 1
 			$('#Character1').css('left', num1 + '%')
 			$('#Character2').css('right', num2 + '%')
+			$('#taunt1').css('left', num1 + '%')
+			$('#taunt2').css('right', num2 + '%')
 			$.stopSound();
 			$.playSound('aud/MainTheme.mp3')
 			countdown();
@@ -211,6 +217,8 @@ $(function(){
 			num2 = 1
 			$('#Character1').css('left', num1 + '%')
 			$('#Character2').css('right', num2 + '%')
+			$('#taunt1').css('left', num1 + '%')
+			$('#taunt2').css('right', num2 + '%')
 			init();
 		})
 	}
