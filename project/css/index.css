@@ -12,35 +12,96 @@ body{
 	background-color: #000;
 }
 
+li:hover {
+	color:white;
+}
+
 .container {
 	width: 100%;
 	background-color: skyblue;
-	height:250px;
+	height:350px;
 	position: relative;
 	overflow: hidden;
-	margin-top: 20%;
+	margin-top: 10%;
+}
+
+.clouds {
+	position:absolute;
+	top: 5%;
+	left: -256px;
+	z-index: 1;
 }
 
 .menu {
+	position: relative;
 	margin: auto;
 	margin-top: 40px;
 	font-family: 'Press Start 2P', cursive;
 	width: 50%;
 	text-align: center;
 	padding: 15px;
+	z-index: 2;
 }
 
 .menu p {
 	font-size: 8px;
+	line-height: 1.5em;
 }
 
 .menuList {
 	list-style-type: none;
 }
 
+.countdown, .GO{
+	color: red;
+	text-shadow: -2px 2px #000;
+}
+
+
+@-webkit-keyframes rumble {
+    0% {-webkit-transform: rotate(0deg);}
+    25% {-webkit-transform: translate(3px, 0px) rotate(-6deg);}
+    50% {-webkit-transform: translate(0px, -3px) rotate(0deg);}
+    75% {-webkit-transform: translate(-3px, 0px) rotate(6deg);}
+    100% {-webkit-transform: translate(0px, 3px) rotate(0deg);} 
+}
+
+.GO {
+	 -webkit-animation: rumble .0625s infinite linear;
+}
+
+.taunts {
+	font-family: 'Press Start 2P', cursive;
+	display: block;
+	z-index: 2;
+	font-size: 10px;
+	position: relative;
+}
+
+#taunt1, #taunt2 {
+	z-index: 2;
+	display: inline;
+	position: absolute;
+	visibility: hidden;
+	-webkit-animation: rumble .0625s infinite linear;
+	color: red;
+	text-shadow: -2px 2px #000;
+	top: 60px;
+}
+
+#taunt1 {
+	left:1%;
+}
+
+#taunt2 {
+	right: 1%;
+}
+
 .ground {
 	position:absolute;
 	bottom:0;
+	left:0;
+	height: 40px;
 	overflow: hidden;
 }
 
@@ -48,24 +109,39 @@ body{
 	display: inline;
 }
 
+#mute {
+	height:15px;
+	width:15px
+}
+
+#X {
+	display: inline;
+	float: left;
+}
+
+#X:hover, #replay:hover, #restart:hover {
+	color:white;
+}
+
 #Character1 {
 	position: absolute;
 	left: 1%;
-	top: 204px;
+	top: 259px;
 }
 
 #sprite1 {
-	height:30px;
-	width:30px;
+	height:50px;
+	width:50px;
 }
 
 #Character2 {
 	position: absolute;
 	right: 1%;
-	top: 204px;
+	top: 259px;
 }
 
 #sprite2 {
-	height:30px;
-	width:30px;
+	height:50px;
+	width:50px;
 }
+

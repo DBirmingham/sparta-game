@@ -5,10 +5,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+	<script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
  	<script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 	<div class="container">
+		<div class="clouds">
+			<img src="img/Charanims/clouds.png">
+		</div>
 		<div class='menu'>
 			<h1>Joust!!</h1>
 			<ul class='menuList'>
@@ -17,11 +21,14 @@
 			</ul>
 		</div>
 		<div class="arena">
-				<div id="Character1"><img id="sprite1" src="img/charSword/Idle1.png"></div>
-				<div id="Character2"><img id="sprite2" src="img/charSword/Idle21.png"></div>
+			<div class='taunts'>
+				<h2 id='taunt1'>This is Sparta!!!</h2>
+				<h2 id='taunt2'>This is Sparta!!!</h2>
+			</div>
+			<div id="Character1"><img id="sprite1" src="img/charSword/Idle1.png"></div>
+			<div id="Character2"><img id="sprite2" src="img/charSword/Idle21.png"></div>
 		</div>
 		<img class='ground' src="img/Charanims/GroundFull.png">
 	</div>
-	<p class='test'></p>
 </body>
 </html>
